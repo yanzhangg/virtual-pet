@@ -20,15 +20,16 @@ public class PetList {
         return petList;
     }
 
+
     public String viewPetList() {
         String list = "";
         for (int i = 0; i < petList.size(); i++) {
-            list = list + " " + petList.get(i).getName();
+            list = list + petList.get(i).getName() + "\n";
         }
         return list;
     }
 
-    public void searchPets() {
-
-    }
+//    public void searchPets() {
+//
+//    }
 }

@@ -24,7 +24,7 @@ public class PetApp {
 
         while (keepGoing) {
             displayMenu();
-            command = input.nextLine();
+            command = input.next();
             command = command.toLowerCase();
 
             if (command.equals("d")) {
@@ -70,7 +70,7 @@ public class PetApp {
     // EFFECTS: allows users to choose a cat or dog
     private void createPet() {
         System.out.println("\nChoose your pet (cat / dog)");
-        String petType = input.nextLine();
+        String petType = input.next();
         if ((petType.equals("dog")) || (petType.equals("cat"))) {
             choosePet(petType);
         } else {
@@ -93,24 +93,52 @@ public class PetApp {
     // EFFECTS: names your pet dog
     private void nameDog() {
         System.out.println("\nGive your dog a name!");
-        String dogName = input.nextLine();
+        String dogName = checkName();
         System.out.println("\n" + dogName + " the dog has been created!");
         animal = new Dog(dogName);
         petList.addPetToList(animal);
-        displayPetStats(dogName);
-
+        secondMenu(dogName);
     }
+
+    private String checkName() {
+        boolean bool = true;
+        String petName = "";
+        do {
+            petName = input.next();
+            for (PetAnimal pet : petList.getPets()) {
+                if (petName.equals(pet.getName())) {
+                    bool = false;
+                    System.out.println("bad name try again!");
+                    break;
+                } else {
+                    bool = true;
+                }
+            }
+        } while (!bool);
+
+        return petName;
+    }
+
+
 
     // MODIFIES: this
     // EFFECTS: names your pet cat
     private void nameCat() {
         System.out.println("\nGive your cat a name!");
-        String catName = input.nextLine();
+        String catName = checkName();
         System.out.println("\n" + catName + " the cat has been created!");
         animal = new Cat(catName);
         petList.addPetToList(animal);
-        displayPetStats(catName);
+        secondMenu(catName);
+    }
 
+    private void secondMenu(String name) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            displayPetStats(name);
+            petActionsMenu(name);
+        }
     }
 
     //EFFECTS: displays cat stats to user
@@ -119,12 +147,11 @@ public class PetApp {
         System.out.println("\tFullness: " + animal.getFullnessLevel());
         System.out.println("\tHappiness: " + animal.getHappinessLevel());
         System.out.println("\tSleepiness: " + animal.getEnergyLevel());
-        runPetActions(name);
     }
 
     // MODIFIES: this
     // EFFECTS: action options for cat
-    private void runPetActions(String name) {
+    private void petActionsMenu(String name) {
         System.out.println("\nWhat would you like to do?");
         System.out.println("\t1. Feed " + name);
         System.out.println("\t2. Pet " + name);
@@ -134,7 +161,7 @@ public class PetApp {
         determinePet(name);
     }
 
-    public void determinePet(String name) {
+    private void determinePet(String name) {
         int action = input.nextInt();
         if (animal.getClass().getName() == "dog") {
             dogAction(name, action);
@@ -150,12 +177,14 @@ public class PetApp {
             dogFeed(name);
         } else if (action == 2) {
             animal.pet();
+            System.out.println("Woof woof!");
         } else if (action == 3) {
             dogPlay(name);
         } else if (action == 4) {
             animal.sleep();
+            System.out.println("ZZZZZZZZ");
         } else if (action == 5) {
-            displayMenu();
+            startingMenu();
         } else {
             System.out.println("Selection not valid, please try again.");
         }
@@ -168,12 +197,14 @@ public class PetApp {
             catFeed(name);
         } else if (action == 2) {
             animal.pet();
+            System.out.println("Meowwww");
         } else if (action == 3) {
             catPlay(name);
         } else if (action == 4) {
             animal.sleep();
+            System.out.println("zzzzzzzz");
         } else if (action == 5) {
-            displayMenu();
+            startingMenu();
         } else {
             System.out.println("Selection not valid, please try again.");
         }

@@ -29,16 +29,6 @@ public class Dog extends PetAnimal {
         } else {
             this.energy = 100;
         }
-        System.out.println("ZZZZZZZZ");
-    }
-
-    public void pet() {
-        if (getHappinessLevel() <= 95) {
-            this.happiness = this.happiness + 5;
-        } else {
-            this.happiness = 100;
-        }
-        System.out.println("Woof woof!");
     }
 
 

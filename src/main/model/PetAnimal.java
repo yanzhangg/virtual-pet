@@ -32,13 +32,24 @@ public abstract class PetAnimal {
         return energy;
     }
 
+    public int setHappinessLevel(Integer num) {
+        return this.happiness = num;
+    }
+
     public abstract void feed();
 
     public abstract void play();
 
     public abstract void sleep();
 
-    public abstract void pet();
+    public void pet() {
+        if (getHappinessLevel() <= 95) {
+            this.happiness = this.happiness + 5;
+        } else {
+            this.happiness = 100;
+        }
+    }
+}
 
 //    public void passTime() {
 //        fullness--;
@@ -46,5 +57,3 @@ public abstract class PetAnimal {
 //        energy--;
 //    }
 
-
-}
