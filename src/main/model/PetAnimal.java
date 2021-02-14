@@ -8,7 +8,7 @@ public abstract class PetAnimal {
     protected int fullness; // the fullness of the pet, 100 = full 0 = hungry
     protected int energy; // the sleepiness of the pet, 100 = full energy, 0 = sleepy
 
-    // constructor
+    // EFFECTS: constructs a pet animal
     public PetAnimal(String name) {
         this.name = name;
         this.fullness = 100;
@@ -16,22 +16,27 @@ public abstract class PetAnimal {
         this.energy = 100;
     }
 
+    // getter
     public String getName() {
         return name;
     }
 
+    // getter
     public int getFullnessLevel() {
         return fullness;
     }
 
+    // getter
     public int getHappinessLevel() {
         return happiness;
     }
 
+    // getter
     public int getEnergyLevel() {
         return energy;
     }
 
+    // setter
     public int setHappinessLevel(Integer num) {
         return this.happiness = num;
     }
@@ -42,6 +47,8 @@ public abstract class PetAnimal {
 
     public abstract void sleep();
 
+    // MODIFIES: this
+    // EFFECTS: petting the pet action
     public void pet() {
         if (getHappinessLevel() <= 95) {
             this.happiness = this.happiness + 5;
@@ -50,7 +57,9 @@ public abstract class PetAnimal {
         }
     }
 }
-
+    // MODIFIES: this
+    // EFFECTS: decrease levels as time passes
+    // to do next phase
 //    public void passTime() {
 //        fullness--;
 //        happiness--;

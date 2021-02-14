@@ -5,6 +5,8 @@ public class Dog extends PetAnimal {
         super(name);
     }
 
+    // MODIFIES: this
+    // EFFECTS: feed dog action
     public void feed() {
         if (getFullnessLevel() <= 96) {
             this.fullness = this.fullness + 4;
@@ -13,6 +15,8 @@ public class Dog extends PetAnimal {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: play with dog action
     public void play() {
         if (getHappinessLevel() <= 95) {
             this.happiness = this.happiness + 5;
@@ -23,6 +27,8 @@ public class Dog extends PetAnimal {
         this.fullness = this.fullness - 7;
     }
 
+    // MODIFIES: this
+    // EFFECTS: let dog sleep action
     public void sleep() {
         if (getEnergyLevel() <= 90) {
             this.energy = this.energy + 10;
