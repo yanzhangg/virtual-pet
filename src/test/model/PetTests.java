@@ -3,11 +3,10 @@ package model;
 import model.PetAnimal;
 import model.Dog;
 import model.Cat;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

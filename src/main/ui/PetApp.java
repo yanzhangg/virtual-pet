@@ -4,8 +4,9 @@ import model.Cat;
 import model.Dog;
 import model.PetAnimal;
 import model.PetList;
-
 import java.util.Scanner;
+
+// Credit: some code from TellerApp
 
 public class PetApp {
     private PetAnimal animal;
@@ -20,7 +21,6 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input and loops command menu
-    // source: code from TellerApp
     public void startingMenu() {
         boolean keepGoing = true;
         String command = null;
@@ -139,10 +139,19 @@ public class PetApp {
     // EFFECTS: displays second menu of options to user, includes pet stats and pet actions
     private void secondMenu(String name) {
         boolean keepGoing = true;
+        String command = null;
 
         while (keepGoing) {
             displayPetStats(name);
             petActionsMenu(name);
+            command = input.next();
+
+            if (command.equals("e")) {
+                keepGoing = false;
+            } else {
+                displayPetStats(name);
+                petActionsMenu(name);
+            }
         }
     }
 
