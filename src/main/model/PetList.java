@@ -1,15 +1,24 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class PetList {
+// Represents a list of pets
+public class PetList implements Writable {
+    private String name;
     private ArrayList<PetAnimal> petList;
-    private Dog dog;
-    private Cat cat;
 
     // EFFECTS: constructs an empty pet list
-    public PetList() {
+    public PetList(String name) {
+        this.name = name;
         this.petList = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     // MODIFIES: this
@@ -35,9 +44,31 @@ public class PetList {
 
     // MODIFIES: this
     // EFFECTS: search for pet by name
-    // to do next phase
-//    public void searchPets() {
-//
-//    }
+    public PetAnimal searchPets(String name) {
+        for (PetAnimal p : petList) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("petList", petListToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray petListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PetAnimal p : petList) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
 }

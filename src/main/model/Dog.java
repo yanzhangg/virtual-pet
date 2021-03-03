@@ -1,8 +1,17 @@
 package model;
 
+import org.json.JSONObject;
+
+// Represents a dog pet
 public class Dog extends PetAnimal {
     public Dog(String name) {
         super(name);
+        this.type = "dog";
+    }
+
+    public Dog(String name, int happiness, int fullness, int energy) {
+        super(name, happiness, fullness, energy);
+        this.type = "dog";
     }
 
     // MODIFIES: this
@@ -36,6 +45,5 @@ public class Dog extends PetAnimal {
             this.energy = 100;
         }
     }
-
 
 }

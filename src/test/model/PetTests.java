@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PetTests {
     Dog dog;
     Cat cat;
-    PetList petList = new PetList();
+    PetList petList;
 
     @BeforeEach
     void runBefore() {
+        petList = new PetList("Your pets");
         dog = new Dog("Billy");
         cat = new Cat("Larry");
     }

@@ -1,8 +1,18 @@
 package model;
 
+import org.json.JSONObject;
+
+// Represents a cat pet
 public class Cat extends PetAnimal {
+
     public Cat(String name) {
         super(name);
+        this.type = "cat";
+    }
+
+    public Cat(String name, int happiness, int fullness, int energy) {
+        super(name, happiness, fullness, energy);
+        this.type = "cat";
     }
 
     // MODIFIES: this

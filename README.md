@@ -19,3 +19,8 @@ create and take care of their own virtual pet.
 - As a user, I want to be able to create multiple pets (dog or cat)
 - As a user, I want to be able to view all the pets I have created
 - As a user, I want to be able to search up my pets by name
+- As a user, I want to be able to save my list of pets to file
+- As a user, I want to be able to load my list of pets from file
+- As a user, when I select the quit option from the application menu, I want to be reminded to save my pets to file or 
+  have the option to not do so
+- As a user, when I start the application, I want to be given the option to load my pets from file

@@ -4,17 +4,28 @@ import model.Cat;
 import model.Dog;
 import model.PetAnimal;
 import model.PetList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
-// Credit: some code from TellerApp
+// Source: code from TellerApp
 
 public class PetApp {
+    private static final String JSON_STORE = "./data/petlist.json";
     private PetAnimal animal;
-    private PetList petList = new PetList();
+    private PetList petList;
     private Scanner input = new Scanner(System.in);
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the pet application
-    public PetApp() {
+    public PetApp() throws FileNotFoundException {
+        petList = new PetList("your pets");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         System.out.println("Welcome to PetZoo!");
         startingMenu();
     }
@@ -30,7 +41,16 @@ public class PetApp {
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("d")) {
+            if (command.equals("f")) {
+                System.out.println("Do you want to save your pets? Y/N");
+                String toSave = input.next();
+                while ((!toSave.equals("Y")) && (!toSave.equals("N"))) {
+                    System.out.println("Selection not valid, please try again.");
+                    toSave = input.next();
+                }
+                if (toSave.equals("Y")) {
+                    savePets();
+                }
                 keepGoing = false;
             } else {
                 menuCommands(command);
@@ -47,7 +67,9 @@ public class PetApp {
         System.out.println("\ta -> Create a new pet");
         System.out.println("\tb -> View all pets");
         System.out.println("\tc -> Search for a pet");
-        System.out.println("\td -> Quit");
+        System.out.println("\td -> Save pets to file");
+        System.out.println("\te -> Load pets from file");
+        System.out.println("\tf -> Quit");
     }
 
     // MODIFIES: this
@@ -63,7 +85,11 @@ public class PetApp {
                 System.out.println(petList.viewPetList());
             }
         } else if (command.equals("c")) {
-//            searchPets();
+            petSearch();
+        } else if (command.equals("d")) {
+            savePets();
+        } else if (command.equals("e")) {
+            loadPets();
         } else {
             System.out.println("Selection not valid, please try again.");
         }
@@ -272,6 +298,40 @@ public class PetApp {
         } else {
             animal.play();
             System.out.println("Hide and seek is so much fun!");
+        }
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void savePets() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(petList);
+            jsonWriter.close();
+            System.out.println("Saved " + petList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadPets() {
+        try {
+            petList = jsonReader.read();
+            System.out.println("Loaded " + petList.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void petSearch() {
+        System.out.println("Name of pet:");
+        String name = input.next();
+        PetAnimal pet = petList.searchPets(name);
+        if (pet == null) {
+            System.out.println("That pet does not exist, try again!");
+        } else {
+            secondMenu(name);
         }
     }
 }

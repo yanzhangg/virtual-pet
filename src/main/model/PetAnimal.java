@@ -1,19 +1,32 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Timer;
 
-public abstract class PetAnimal {
+// Represents a pet animal having a name, and a happiness, fullness, and energy level
+public abstract class PetAnimal implements Writable {
     protected String name; // the name of the pet
     protected int happiness; // the happiness level of the pet, 100 = happy 0 = sad
     protected int fullness; // the fullness of the pet, 100 = full 0 = hungry
     protected int energy; // the sleepiness of the pet, 100 = full energy, 0 = sleepy
+    protected String type;
 
     // EFFECTS: constructs a pet animal
     public PetAnimal(String name) {
         this.name = name;
-        this.fullness = 100;
         this.happiness = 100;
+        this.fullness = 100;
         this.energy = 100;
+    }
+
+    public PetAnimal(String name, int happiness, int fullness, int energy) {
+        this.name = name;
+        this.happiness = happiness;
+        this.fullness = fullness;
+        this.energy = energy;
     }
 
     // getter
@@ -56,6 +69,18 @@ public abstract class PetAnimal {
             this.happiness = 100;
         }
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("type", type);
+        json.put("happiness", happiness);
+        json.put("fullness", fullness);
+        json.put("energy", energy);
+        return json;
+    }
+
 }
     // MODIFIES: this
     // EFFECTS: decrease levels as time passes
