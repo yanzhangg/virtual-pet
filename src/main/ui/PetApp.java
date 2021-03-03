@@ -126,7 +126,7 @@ public class PetApp {
         System.out.println("\n" + dogName + " the dog has been created!");
         animal = new Dog(dogName);
         petList.addPetToList(animal);
-        secondMenu(dogName);
+        secondMenu(animal);
     }
 
     // MODIFIES: this
@@ -137,7 +137,7 @@ public class PetApp {
         System.out.println("\n" + catName + " the cat has been created!");
         animal = new Cat(catName);
         petList.addPetToList(animal);
-        secondMenu(catName);
+        secondMenu(animal);
     }
 
     // MODIFIES: this
@@ -163,28 +163,28 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: displays second menu of options to user, includes pet stats and pet actions
-    private void secondMenu(String name) {
+    private void secondMenu(PetAnimal animal) {
         boolean keepGoing = true;
         String command = null;
 
         while (keepGoing) {
-            displayPetStats(name);
-            petActionsMenu(name);
+            displayPetStats(animal);
+            petActionsMenu(animal);
+            //determinePet(animal);
             command = input.next();
 
             if (command.equals("e")) {
                 keepGoing = false;
             } else {
-                displayPetStats(name);
-                petActionsMenu(name);
+                determinePet(animal);
             }
         }
     }
 
     // MODIFIES: this
-    //EFFECTS: displays pet stats to user
-    private void displayPetStats(String name) {
-        System.out.println("\n" + name + "'s status:");
+    // EFFECTS: displays pet stats to user
+    private void displayPetStats(PetAnimal animal) {
+        System.out.println("\n" + animal.getName() + "'s status:");
         System.out.println("\tFullness: " + animal.getFullnessLevel());
         System.out.println("\tHappiness: " + animal.getHappinessLevel());
         System.out.println("\tSleepiness: " + animal.getEnergyLevel());
@@ -192,37 +192,38 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: display pet action options to user
-    private void petActionsMenu(String name) {
+    private void petActionsMenu(PetAnimal animal) {
         System.out.println("\nWhat would you like to do?");
-        System.out.println("\ta -> Feed " + name);
-        System.out.println("\tb -> Pet " + name);
-        System.out.println("\tc -> Play with " + name);
-        System.out.println("\td -> Let " + name + " sleep");
+        System.out.println("\ta -> Feed " + animal.getName());
+        System.out.println("\tb -> Pet " + animal.getName());
+        System.out.println("\tc -> Play with " + animal.getName());
+        System.out.println("\td -> Let " + animal.getName() + " sleep");
         System.out.println("\te -> Return to main menu");
-        determinePet(name);
     }
 
     // MODIFIES: this
     // EFFECTS: determines whether pet is dog or cat
-    private void determinePet(String name) {
+    private void determinePet(PetAnimal animal) {
+        displayPetStats(animal);
+        petActionsMenu(animal);
         String action = input.next();
         if (animal instanceof Dog) {
-            dogAction(name, action);
+            dogAction(animal, action);
         } else {
-            catAction(name, action);
+            catAction(animal, action);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: processes user action for dog
-    private void dogAction(String name, String action) {
+    private void dogAction(PetAnimal animal, String action) {
         if (action.equals("a")) {
-            dogFeed(name);
+            dogFeed(animal);
         } else if (action.equals("b")) {
             animal.pet();
             System.out.println("Woof woof!");
         } else if (action.equals("c")) {
-            dogPlay(name);
+            dogPlay(animal);
         } else if (action.equals("d")) {
             animal.sleep();
             System.out.println("ZZZZZZZZ");
@@ -235,14 +236,14 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: processes user action for cat
-    private void catAction(String name, String action) {
+    private void catAction(PetAnimal animal, String action) {
         if (action.equals("a")) {
-            catFeed(name);
+            catFeed(animal);
         } else if (action.equals("b")) {
             animal.pet();
             System.out.println("Meowwwww");
         } else if (action.equals("c")) {
-            catPlay(name);
+            catPlay(animal);
         } else if (action.equals("d")) {
             animal.sleep();
             System.out.println("zzzzzzzz");
@@ -255,22 +256,22 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: feeds dog action
-    private void dogFeed(String name) {
+    private void dogFeed(PetAnimal animal) {
         if (animal.getFullnessLevel() == 100) {
-            System.out.println(name + " is already full!");
+            System.out.println(animal.getName() + " is already full!");
         } else {
             animal.feed();
-            System.out.println(name + " has been fed!");
+            System.out.println(animal.getName() + " has been fed!");
         }
     }
 
     // MODIFIES: this
     // EFFECTS: play with dog action
-    private void dogPlay(String name) {
+    private void dogPlay(PetAnimal animal) {
         if (animal.getEnergyLevel() <= 4) {
-            System.out.println(name + " is too tired to play!");
+            System.out.println(animal.getName() + " is too tired to play!");
         } else if (animal.getFullnessLevel() <= 6) {
-            System.out.println(name + " is too hungry to play!");
+            System.out.println(animal.getName() + " is too hungry to play!");
         } else {
             animal.play();
             System.out.println("Tug of war is so much fun!");
@@ -279,29 +280,29 @@ public class PetApp {
 
     // MODIFIES: this
     // EFFECTS: feed dog action
-    private void catFeed(String name) {
+    private void catFeed(PetAnimal animal) {
         if (animal.getFullnessLevel() == 100) {
-            System.out.println(name + " is already full!");
+            System.out.println(animal.getName() + " is already full!");
         } else {
             animal.feed();
-            System.out.println(name + " has been fed!");
+            System.out.println(animal.getName() + " has been fed!");
         }
     }
 
     // MODIFIES: this
     // EFFECTS: play with act action
-    private void catPlay(String name) {
+    private void catPlay(PetAnimal animal) {
         if (animal.getEnergyLevel() <= 1) {
-            System.out.println(name + " is too tired to play!");
+            System.out.println(animal.getName() + " is too tired to play!");
         } else if (animal.getFullnessLevel() == 0) {
-            System.out.println(name + " is too hungry to play!");
+            System.out.println(animal.getName() + " is too hungry to play!");
         } else {
             animal.play();
             System.out.println("Hide and seek is so much fun!");
         }
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the pet list to file
     private void savePets() {
         try {
             jsonWriter.open();
@@ -314,7 +315,7 @@ public class PetApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads pet list from file
     private void loadPets() {
         try {
             petList = jsonReader.read();
@@ -324,6 +325,7 @@ public class PetApp {
         }
     }
 
+    //
     private void petSearch() {
         System.out.println("Name of pet:");
         String name = input.next();
@@ -331,7 +333,7 @@ public class PetApp {
         if (pet == null) {
             System.out.println("That pet does not exist, try again!");
         } else {
-            secondMenu(name);
+            secondMenu(pet);
         }
     }
 }
