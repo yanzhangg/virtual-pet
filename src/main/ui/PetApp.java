@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 // Source: code from TellerApp
 
+// Represents the pet application
 public class PetApp {
     private static final String JSON_STORE = "./data/petlist.json";
     private PetAnimal animal;
@@ -325,7 +326,7 @@ public class PetApp {
         }
     }
 
-    //
+    // EFFECTS: returns pet by search name and prints out stats of pets
     private void petSearch() {
         System.out.println("Name of pet:");
         String name = input.next();

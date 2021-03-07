@@ -22,6 +22,7 @@ public abstract class PetAnimal implements Writable {
         this.energy = 100;
     }
 
+    // EFFECTS: overloaded constructor
     public PetAnimal(String name, int happiness, int fullness, int energy) {
         this.name = name;
         this.happiness = happiness;
@@ -74,7 +75,6 @@ public abstract class PetAnimal implements Writable {
             this.happiness = 100;
         }
     }
-
 
     @Override
     public JSONObject toJson() {

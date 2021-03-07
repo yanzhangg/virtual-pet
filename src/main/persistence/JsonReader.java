@@ -25,7 +25,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads pet list from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PetList read() throws IOException {
         String jsonData = readFile(source);
@@ -44,7 +44,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses pet list from JSON object and returns it
     private PetList parsePetList(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         PetList pl = new PetList(name);
@@ -63,7 +63,7 @@ public class JsonReader {
     }
 
     // MODIFIES: pl
-    // EFFECTS: parses PetAnimal from JSON object and adds it to petList
+    // EFFECTS: parses pet animals from JSON object and adds it to pet list
     private void addPetAnimal(PetList pl, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String type = jsonObject.getString("type");

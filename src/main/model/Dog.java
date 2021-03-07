@@ -2,13 +2,16 @@ package model;
 
 import org.json.JSONObject;
 
-// Represents a dog pet
+// Represents a pet dog
 public class Dog extends PetAnimal {
+
+    // EFFECTS: constructs a pet dog
     public Dog(String name) {
         super(name);
         this.type = "dog";
     }
 
+    // EFFECTS: overloaded constructor
     public Dog(String name, int happiness, int fullness, int energy) {
         super(name, happiness, fullness, energy);
         this.type = "dog";

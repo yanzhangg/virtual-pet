@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 // Represents a list of pets
 public class PetList implements Writable {
-    private String name;
-    private ArrayList<PetAnimal> petList;
+    private String name; // the name of pet list
+    private ArrayList<PetAnimal> petList; // list of pets
 
     // EFFECTS: constructs an empty pet list
     public PetList(String name) {
@@ -17,6 +17,7 @@ public class PetList implements Writable {
         this.petList = new ArrayList<>();
     }
 
+    // getter
     public String getName() {
         return name;
     }
@@ -48,7 +49,7 @@ public class PetList implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: search for pet by name
+    // EFFECTS: search for pet by name, return pet object if found, null if not
     public PetAnimal searchPets(String name) {
         for (PetAnimal p : petList) {
             if (p.getName().equals(name)) {
