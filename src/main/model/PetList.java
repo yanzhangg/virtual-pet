@@ -21,6 +21,11 @@ public class PetList implements Writable {
         return name;
     }
 
+    // EFFECTS: returns number of pets in this pet list
+    public int numPets() {
+        return petList.size();
+    }
+
     // MODIFIES: this
     // EFFECTS: adds pet to list
     public void addPetToList(PetAnimal animal) {
@@ -61,7 +66,7 @@ public class PetList implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns pet animals in this pet list as a JSON array
     private JSONArray petListToJson() {
         JSONArray jsonArray = new JSONArray();
 

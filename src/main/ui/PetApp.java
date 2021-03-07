@@ -23,7 +23,7 @@ public class PetApp {
 
     // EFFECTS: runs the pet application
     public PetApp() throws FileNotFoundException {
-        petList = new PetList("your pets");
+        petList = new PetList("My pet list");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         System.out.println("Welcome to PetZoo!");

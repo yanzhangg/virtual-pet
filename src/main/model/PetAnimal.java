@@ -9,10 +9,10 @@ import java.util.Timer;
 // Represents a pet animal having a name, and a happiness, fullness, and energy level
 public abstract class PetAnimal implements Writable {
     protected String name; // the name of the pet
+    protected String type; // type of pet (cat / dog)
     protected int happiness; // the happiness level of the pet, 100 = happy 0 = sad
     protected int fullness; // the fullness of the pet, 100 = full 0 = hungry
     protected int energy; // the sleepiness of the pet, 100 = full energy, 0 = sleepy
-    protected String type;
 
     // EFFECTS: constructs a pet animal
     public PetAnimal(String name) {
@@ -32,6 +32,11 @@ public abstract class PetAnimal implements Writable {
     // getter
     public String getName() {
         return name;
+    }
+
+    // getter
+    public String getType() {
+        return type;
     }
 
     // getter
@@ -69,6 +74,7 @@ public abstract class PetAnimal implements Writable {
             this.happiness = 100;
         }
     }
+
 
     @Override
     public JSONObject toJson() {

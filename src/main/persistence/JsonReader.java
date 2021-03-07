@@ -14,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Source: JsonSerializationDemo
+
 // Represents a reader that reads petList from JSON data stored in file
 public class JsonReader {
     private String source;

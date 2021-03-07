@@ -1,0 +1,19 @@
+{
+    "petList": [
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "Billy",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "Larry",
+            "type": "cat",
+            "energy": 100
+        }
+    ],
+    "name": "My pet list"
+}
