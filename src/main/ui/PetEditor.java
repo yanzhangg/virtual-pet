@@ -11,19 +11,29 @@ public class PetEditor extends JFrame {
     public static final int HEIGHT = 700;
     private MainMenuPanel mainMenu;
     private CreatePetPanel createPet;
-    private PetActionsPanel petActions;
+    private PetGamePanel petGame;
+    private ViewPetListPanel viewPets;
 
     // constructs main window
     // effects: sets up window in which Pet Zoo app will appear
     public PetEditor() {
         super("Pet Zoo");
         initializeGraphics();
-        mainMenu = new MainMenuPanel();
-        createPet = new CreatePetPanel();
-//        petActions = new PetActionsPanel();
-        add(createPet);
+//        mainMenu = new MainMenuPanel();
 //        add(mainMenu);
+
+//        createPet = new CreatePetPanel();
+//        add(createPet);
+
+//        petActions = new PetActionsPanel();
 //        add(petActions);
+
+        petGame = new PetGamePanel();
+        add(petGame);
+
+//        viewPets = new ViewPetListPanel();
+//        add(viewPets);
+
         setVisible(true);
     }
 

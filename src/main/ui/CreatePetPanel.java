@@ -130,12 +130,19 @@ public class CreatePetPanel extends JPanel {
     }
 
     private JPanel footerPanel() {
-        JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel footer = new JPanel(new BorderLayout());
         footer.setPreferredSize(new Dimension(1000, 55));
+        footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         footer.setBackground(Color.orange);
+
         JButton submit = new JButton("Create pet!");
-        submit.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
-        footer.add(submit);
+        submit.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        footer.add(submit, BorderLayout.EAST);
+
+        JButton back = new JButton("Back");
+        back.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        footer.add(back, BorderLayout.WEST);
+
         add(footer);
         return footer;
     }
