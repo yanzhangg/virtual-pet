@@ -43,7 +43,7 @@ public class PetList implements Writable {
     public String viewPetList() {
         String list = "";
         for (int i = 0; i < petList.size(); i++) {
-            list = list + petList.get(i).getName() + "\n";
+            list = list + petList.get(i).getName() + " the " + petList.get(i).getType() + "\n";
         }
         return list;
     }
