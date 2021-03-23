@@ -19,11 +19,12 @@ public class PetEditor extends JFrame {
         super("Pet Zoo");
         initializeGraphics();
         mainMenu = new MainMenuPanel();
-//        createPet = new CreatePetPanel();
+        createPet = new CreatePetPanel();
 //        petActions = new PetActionsPanel();
-//        add(createPet);
-        add(mainMenu);
+        add(createPet);
+//        add(mainMenu);
 //        add(petActions);
+        setVisible(true);
     }
 
     public void initializeGraphics() {
@@ -32,7 +33,6 @@ public class PetEditor extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
     }
 
     public static void main(String[] args) throws FileNotFoundException {
