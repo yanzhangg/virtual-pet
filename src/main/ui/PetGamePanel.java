@@ -23,7 +23,7 @@ public class PetGamePanel extends JPanel {
         header.setPreferredSize(new Dimension(1000, 70));
         header.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         header.setBackground(Color.orange);
-        JLabel headerLabel = new JLabel("YOUR PET");
+        JLabel headerLabel = new JLabel("PET ZOO");
         headerLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         header.add(headerLabel);
         add(header);

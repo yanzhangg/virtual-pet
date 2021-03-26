@@ -19,17 +19,14 @@ public class PetEditor extends JFrame {
     public PetEditor() {
         super("Pet Zoo");
         initializeGraphics();
-//        mainMenu = new MainMenuPanel();
-//        add(mainMenu);
+        mainMenu = new MainMenuPanel();
+        add(mainMenu);
 
 //        createPet = new CreatePetPanel();
 //        add(createPet);
 
-//        petActions = new PetActionsPanel();
-//        add(petActions);
-
-        petGame = new PetGamePanel();
-        add(petGame);
+//        petGame = new PetGamePanel();
+//        add(petGame);
 
 //        viewPets = new ViewPetListPanel();
 //        add(viewPets);
