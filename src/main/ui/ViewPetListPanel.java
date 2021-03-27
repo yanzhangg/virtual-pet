@@ -1,19 +1,34 @@
 package ui;
 
+import model.PetAnimal;
+import model.PetList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class ViewPetListPanel extends JPanel {
+public class ViewPetListPanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 700;
+    private JFrame mainFrame;
+    private PetList petList;
+    private PetAnimal animal;
 
-    public ViewPetListPanel() {
+    public ViewPetListPanel(JFrame mainFrame, PetList petList) {
+        this.petList = petList;
+        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));
         add(headerPanel(), BorderLayout.NORTH);
         add(footerPanel(), BorderLayout.SOUTH);
         add(centrePanel(), BorderLayout.CENTER);
+        System.out.println(petList.viewPetList());
     }
 
     private JPanel headerPanel() {
@@ -61,7 +76,9 @@ public class ViewPetListPanel extends JPanel {
     private JPanel pets() {
         JPanel pets = new JPanel();
         pets.setPreferredSize(new Dimension(1000, 500));
-        pets.setBackground(Color.lightGray);
+        pets.setBackground(Color.white);
+        pets.add(cat());
+        pets.add(dog());
         add(pets);
         return pets;
     }
@@ -71,15 +88,49 @@ public class ViewPetListPanel extends JPanel {
         footer.setPreferredSize(new Dimension(1000, 55));
         footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         footer.setBackground(Color.orange);
-
         JButton back = new JButton("Back");
         back.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new MainMenuPanel(mainFrame, petList));
+                mainFrame.revalidate();
+            }
+        });
         footer.add(back, BorderLayout.WEST);
-
         add(footer);
         return footer;
     }
 
+    private JButton cat() {
+        BufferedImage cat = null;
+        try {
+            cat = ImageIO.read(new File("./data/cat.PNG"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image catResized = cat.getScaledInstance(200, 200, cat.SCALE_SMOOTH);
+        Icon catIcon = new ImageIcon(catResized);
+        JButton catButton = new JButton(catIcon);
+        return catButton;
+    }
 
+    private JButton dog() {
+        BufferedImage dog = null;
+        try {
+            dog = ImageIO.read(new File("./data/dog.PNG"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image dogResized = dog.getScaledInstance(200, 200, dog.SCALE_SMOOTH);
+        Icon dogIcon = new ImageIcon(dogResized);
+        JButton dogButton = new JButton(dogIcon);
+        return dogButton;
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }

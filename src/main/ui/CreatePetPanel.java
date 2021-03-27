@@ -1,19 +1,33 @@
 package ui;
 
+import model.Cat;
+import model.Dog;
+import model.PetAnimal;
+import model.PetList;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CreatePetPanel extends JPanel {
+public class CreatePetPanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 700;
+    private JFrame mainFrame;
+    JTextField namePet;
+    private PetAnimal animal;
+    private PetList petList;
+    private String selectedPetType;
 
-    public CreatePetPanel() {
+    public CreatePetPanel(JFrame mainFrame, PetList petList) {
+        this.petList = petList;
+        this.animal = animal;
+        this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));
         add(headerPanel(), BorderLayout.NORTH);
@@ -100,6 +114,8 @@ public class CreatePetPanel extends JPanel {
         ButtonGroup group = new ButtonGroup();
         group.add(dogButton);
         group.add(catButton);
+        dogButton.addActionListener(dogActionListener(dogButton));
+        catButton.addActionListener(catActionListener(catButton));
         add(radioButton);
         return radioButton;
     }
@@ -122,7 +138,7 @@ public class CreatePetPanel extends JPanel {
         name.setLayout(new BoxLayout(name, BoxLayout.Y_AXIS));
         name.setBackground(Color.white);
         name.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
-        JTextField namePet = new JTextField(20);
+        namePet = new JTextField(20);
         namePet.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
         name.add(namePet);
         add(name);
@@ -134,16 +150,70 @@ public class CreatePetPanel extends JPanel {
         footer.setPreferredSize(new Dimension(1000, 55));
         footer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         footer.setBackground(Color.orange);
-
-        JButton submit = new JButton("Create pet!");
-        submit.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        footer.add(submit, BorderLayout.EAST);
-
-        JButton back = new JButton("Back");
-        back.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        footer.add(back, BorderLayout.WEST);
-
+        footer.add(submitButton(), BorderLayout.EAST);
+        footer.add(backButton(), BorderLayout.WEST);
         add(footer);
         return footer;
+    }
+
+    private ActionListener dogActionListener(JRadioButton dogButton) {
+        dogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedPetType = "dog";
+            }
+        });
+        return null;
+    }
+
+    private ActionListener catActionListener(JRadioButton catButton) {
+        catButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedPetType = "cat";
+            }
+        });
+        return null;
+    }
+
+    private JButton submitButton() {
+        JButton submit = new JButton("Create pet!");
+        submit.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = namePet.getText();
+                if (selectedPetType.equals("dog")) {
+                    animal = new Dog(name);
+                    petList.addPetToList(animal);
+                } else if (selectedPetType.equals("cat")) {
+                    animal = new Cat(name);
+                    petList.addPetToList(animal);
+                }
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
+                mainFrame.revalidate();
+            }
+        });
+        return submit;
+    }
+
+    private JButton backButton() {
+        JButton back = new JButton("Back");
+        back.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new MainMenuPanel(mainFrame, petList));
+                mainFrame.revalidate();
+            }
+        });
+        return back;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
