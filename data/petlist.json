@@ -1,10 +1,47 @@
 {
-    "petList": [{
-        "happiness": 100,
-        "fullness": 100,
-        "name": "test",
-        "type": "dog",
-        "energy": 100
-    }],
+    "petList": [
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "test",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "loo",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "s",
+            "type": "cat",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "ss",
+            "type": "cat",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "we",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "dsf",
+            "type": "dog",
+            "energy": 100
+        }
+    ],
     "name": "My Pet List"
 }

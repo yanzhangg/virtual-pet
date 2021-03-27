@@ -4,10 +4,14 @@ import model.Dog;
 import model.PetAnimal;
 import model.PetList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class PetGamePanel extends JPanel {
 
@@ -27,7 +31,6 @@ public class PetGamePanel extends JPanel {
         add(footerPanel(), BorderLayout.SOUTH);
         add(petStatsPanel(animal), BorderLayout.WEST);
         add(centrePanel(), BorderLayout.CENTER);
-        System.out.println(petList.viewPetList());
     }
 
     private JPanel headerPanel() {
@@ -68,39 +71,44 @@ public class PetGamePanel extends JPanel {
         JPanel centre = new JPanel();
         centre.setBackground(Color.white);
         centre.setPreferredSize(new Dimension(800, 600));
-        centre.add(petActionsPanel());
-        centre.add(gamePanel());
+        centre.add(petActionsPanel(animal));
+        centre.add(gamePanel(animal));
         add(centre);
         return centre;
     }
 
 
-    private JPanel petActionsPanel() {
+    private JPanel petActionsPanel(PetAnimal animal) {
         JPanel actions = new JPanel();
-        actions.setLayout(new GridLayout(1,0));
+        actions.setLayout(new GridLayout(1, 0));
         actions.setPreferredSize(new Dimension(800, 75));
         actions.setBorder(BorderFactory.createEmptyBorder(20, 20, 15, 30));
         actions.setBackground(Color.white);
         JLabel actionsLabel = new JLabel("Actions:");
         actionsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
         actions.add(actionsLabel);
-
         JButton sleep = new JButton("Sleep");
         sleep.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
-
-        actions.add(feedAction());
-        actions.add(petAction());
-        actions.add(playAction());
+        actions.add(feedAction(animal));
+        actions.add(petAction(animal));
+        actions.add(playAction(animal));
         actions.add(sleep);
-
         add(actions);
         return actions;
     }
 
-    private JPanel gamePanel() {
+    private JPanel gamePanel(PetAnimal animal) {
         JPanel game = new JPanel();
         game.setPreferredSize(new Dimension(800, 500));
+        game.setLayout(new BorderLayout());
         game.setBackground(Color.lightGray);
+        if (animal.getType().equals("dog")) {
+            game.add(dogCharacter(animal), BorderLayout.SOUTH);
+        } else if (animal.getType().equals("cat")) {
+            game.add(catCharacter(animal), BorderLayout.SOUTH);
+        }
+
+
         add(game);
         return game;
     }
@@ -117,7 +125,7 @@ public class PetGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.getContentPane().removeAll();
-                mainFrame.add(new MainMenuPanel(mainFrame, petList));
+                mainFrame.add(new ViewPetListPanel(mainFrame, petList, animal));
                 mainFrame.revalidate();
             }
         });
@@ -127,9 +135,7 @@ public class PetGamePanel extends JPanel {
         return footer;
     }
 
-
-
-    private JButton feedAction() {
+    private JButton feedAction(PetAnimal animal) {
         JButton feed = new JButton("Feed");
         feed.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
         feed.addActionListener(new ActionListener() {
@@ -143,7 +149,7 @@ public class PetGamePanel extends JPanel {
         return feed;
     }
 
-    private JButton petAction() {
+    private JButton petAction(PetAnimal animal) {
         JButton pet = new JButton("Pet");
         pet.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
         pet.addActionListener(new ActionListener() {
@@ -157,7 +163,7 @@ public class PetGamePanel extends JPanel {
         return pet;
     }
 
-    private JButton playAction() {
+    private JButton playAction(PetAnimal animal) {
         JButton play = new JButton("Play");
         play.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
         play.addActionListener(new ActionListener() {
@@ -171,12 +177,29 @@ public class PetGamePanel extends JPanel {
         return play;
     }
 
-//    private void determinePet(PetAnimal animal) {
-//        if (animal instanceof Dog) {
-//            dogActions(animal);
-//        } else {
-//            catActions(animal);
-//        }
-//    }
+    private JLabel dogCharacter(PetAnimal animal) {
+        BufferedImage dog = null;
+        try {
+            dog = ImageIO.read(new File("./data/dog.PNG"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image dogResized = dog.getScaledInstance(400, 400, dog.SCALE_SMOOTH);
+        JLabel dogLabel = new JLabel(new ImageIcon(dogResized));
+        return dogLabel;
+    }
+
+    private JLabel catCharacter(PetAnimal animal) {
+        BufferedImage cat = null;
+        try {
+            cat = ImageIO.read(new File("./data/cat.PNG"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image catResized = cat.getScaledInstance(400, 400, cat.SCALE_SMOOTH);
+        JLabel catLabel = new JLabel(new ImageIcon(catResized));
+
+        return catLabel;
+    }
 
 }

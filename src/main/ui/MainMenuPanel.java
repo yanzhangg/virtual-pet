@@ -110,7 +110,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.getContentPane().removeAll();
-                mainFrame.add(new ViewPetListPanel(mainFrame, petList));
+                mainFrame.add(new ViewPetListPanel(mainFrame, petList, animal));
                 mainFrame.revalidate();
             }
         });

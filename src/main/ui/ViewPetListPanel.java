@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewPetListPanel extends JPanel implements ActionListener {
 
@@ -20,9 +21,10 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
     private PetList petList;
     private PetAnimal animal;
 
-    public ViewPetListPanel(JFrame mainFrame, PetList petList) {
+    public ViewPetListPanel(JFrame mainFrame, PetList petList, PetAnimal animal) {
         this.petList = petList;
         this.mainFrame = mainFrame;
+        this.animal = animal;
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));
         add(headerPanel(), BorderLayout.NORTH);
@@ -74,11 +76,19 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
     }
 
     private JPanel pets() {
+        System.out.println(petList.viewPetList());
+        ArrayList<PetAnimal> petArrayList = petList.getPets();
         JPanel pets = new JPanel();
         pets.setPreferredSize(new Dimension(1000, 500));
         pets.setBackground(Color.white);
-        pets.add(cat());
-        pets.add(dog());
+
+        for (PetAnimal animal : petArrayList) {
+            if (animal.getType().equals("dog")) {
+                pets.add(dog(animal));
+            } else if (animal.getType().equals("cat")) {
+                pets.add(cat(animal));
+            }
+        }
         add(pets);
         return pets;
     }
@@ -103,29 +113,55 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return footer;
     }
 
-    private JButton cat() {
+    private JButton cat(PetAnimal animal) {
         BufferedImage cat = null;
         try {
             cat = ImageIO.read(new File("./data/cat.PNG"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image catResized = cat.getScaledInstance(200, 200, cat.SCALE_SMOOTH);
+        Image catResized = cat.getScaledInstance(150, 150, cat.SCALE_SMOOTH);
         Icon catIcon = new ImageIcon(catResized);
         JButton catButton = new JButton(catIcon);
+        catButton.setPreferredSize(new Dimension(200, 220));
+        catButton.setText(animal.getName());
+        catButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+        catButton.setVerticalTextPosition(JButton.TOP);
+        catButton.setHorizontalTextPosition(JButton.CENTER);
+        catButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
+                mainFrame.revalidate();
+            }
+        });
         return catButton;
     }
 
-    private JButton dog() {
+    private JButton dog(PetAnimal animal) {
         BufferedImage dog = null;
         try {
             dog = ImageIO.read(new File("./data/dog.PNG"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image dogResized = dog.getScaledInstance(200, 200, dog.SCALE_SMOOTH);
+        Image dogResized = dog.getScaledInstance(150, 150, dog.SCALE_SMOOTH);
         Icon dogIcon = new ImageIcon(dogResized);
         JButton dogButton = new JButton(dogIcon);
+        dogButton.setPreferredSize(new Dimension(200, 220));
+        dogButton.setText(animal.getName());
+        dogButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+        dogButton.setVerticalTextPosition(JButton.TOP);
+        dogButton.setHorizontalTextPosition(JButton.CENTER);
+        dogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
+                mainFrame.revalidate();
+            }
+        });
         return dogButton;
     }
 
