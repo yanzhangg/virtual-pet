@@ -5,6 +5,7 @@ import model.PetList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.xml.ws.Action;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
     private JFrame mainFrame;
     private PetList petList;
     private PetAnimal animal;
+    private JPanel petsPanel;
 
     public ViewPetListPanel(JFrame mainFrame, PetList petList, PetAnimal animal) {
         this.petList = petList;
@@ -41,22 +43,25 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         JLabel headerLabel = new JLabel("VIEW ALL PETS");
         headerLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         header.add(headerLabel);
-        add(header);
         return header;
     }
 
     private JPanel centrePanel() {
         JPanel centre = new JPanel();
+        petsPanel = new JPanel();
+        petsPanel.setPreferredSize(new Dimension(1000, 500));
+        petsPanel.setBackground(Color.white);
+        pets(petList.getPets());
         centre.setBackground(Color.white);
         centre.setPreferredSize(new Dimension(1000, 600));
         centre.setBorder(BorderFactory.createEmptyBorder(10, 15, 0, 15));
         centre.add(searchPetsPanel());
-        centre.add(pets());
-        add(centre);
+        centre.add(petsPanel);
         return centre;
     }
 
     private JPanel searchPetsPanel() {
+        ArrayList<PetAnimal> petSearchList = new ArrayList<>();
         JPanel search = new JPanel();
         search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
         search.setPreferredSize(new Dimension(1000, 60));
@@ -70,27 +75,33 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         search.add(searchPet);
         JButton go = new JButton("  Go  ");
         go.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        go.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (PetAnimal animal : petList.getPets()) {
+                    if (animal.getName().equals(searchPet.getText())) {
+                        petSearchList.add(animal);
+                        System.out.println(animal.getName());
+                    }
+                }
+                petsPanel.removeAll();
+                petsPanel.revalidate();
+                pets(petSearchList);
+                petsPanel.repaint();
+            }
+        });
         search.add(go);
-        add(search);
         return search;
     }
 
-    private JPanel pets() {
-        System.out.println(petList.viewPetList());
-        ArrayList<PetAnimal> petArrayList = petList.getPets();
-        JPanel pets = new JPanel();
-        pets.setPreferredSize(new Dimension(1000, 500));
-        pets.setBackground(Color.white);
-
+    private void pets(ArrayList<PetAnimal> petArrayList) {
         for (PetAnimal animal : petArrayList) {
             if (animal.getType().equals("dog")) {
-                pets.add(dog(animal));
+                petsPanel.add(dog(animal));
             } else if (animal.getType().equals("cat")) {
-                pets.add(cat(animal));
+                petsPanel.add(cat(animal));
             }
         }
-        add(pets);
-        return pets;
     }
 
     private JPanel footerPanel() {
