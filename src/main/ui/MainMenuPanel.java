@@ -5,6 +5,9 @@ import model.PetList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 
 public class MainMenuPanel extends JPanel implements ActionListener {
@@ -126,7 +130,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
                 try {
                     petList = jsonReader.read();
                     System.out.println("Loaded " + petList.getName() + " from " + JSON_STORE);
-                    System.out.println(petList.viewPetList());
+                    playSound("./data/success.wav");
                 } catch (IOException exception) {
                     System.out.println("Unable to read from file: " + JSON_STORE);
                 }
@@ -169,6 +173,18 @@ public class MainMenuPanel extends JPanel implements ActionListener {
             System.exit(0);
         } else if (response == JOptionPane.NO_OPTION) {
             System.exit(0);
+        }
+    }
+
+    public void playSound(String soundName) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception e) {
+            System.out.println("Error with playing sound.");
+            e.printStackTrace();
         }
     }
 

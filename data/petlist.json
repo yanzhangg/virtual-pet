@@ -41,6 +41,20 @@
             "name": "dsf",
             "type": "dog",
             "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 90,
+            "name": "richard",
+            "type": "dog",
+            "energy": 90
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "ann",
+            "type": "cat",
+            "energy": 100
         }
     ],
     "name": "My Pet List"

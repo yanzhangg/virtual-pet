@@ -107,8 +107,6 @@ public class PetGamePanel extends JPanel {
         } else if (animal.getType().equals("cat")) {
             game.add(catCharacter(animal), BorderLayout.SOUTH);
         }
-
-
         add(game);
         return game;
     }
