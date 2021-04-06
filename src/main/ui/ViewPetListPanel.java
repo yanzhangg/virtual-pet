@@ -66,18 +66,25 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
 
     // EFFECTS: creates a search pets panel
     private JPanel searchPetsPanel() {
-        ArrayList<PetAnimal> petSearchList = new ArrayList<>();
         JPanel search = new JPanel();
         search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
+        search.setBackground(Color.white);
         search.setPreferredSize(new Dimension(1000, 60));
         search.setBorder(BorderFactory.createEmptyBorder(0, 180, 5, 200));
-        search.setBackground(Color.white);
         JLabel searchLabel = new JLabel("Search for a pet:  ");
         searchLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         search.add(searchLabel);
+        search.add(goButton());
+        return search;
+    }
+
+    // EFFECTS: creates a search pet text box and go button panel
+    private JPanel goButton() {
+        JPanel searchAndGo = new JPanel();
+        ArrayList<PetAnimal> petSearchList = new ArrayList<>();
         JTextField searchPet = new JTextField(5);
         searchPet.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        search.add(searchPet);
+        searchAndGo.add(searchPet);
         JButton go = new JButton("  Go  ");
         go.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         go.addActionListener(new ActionListener() {
@@ -86,7 +93,6 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
                 for (PetAnimal animal : petList.getPets()) {
                     if (animal.getName().equals(searchPet.getText())) {
                         petSearchList.add(animal);
-                        System.out.println(animal.getName());
                     }
                 }
                 petsPanel.removeAll();
@@ -95,8 +101,8 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
                 petsPanel.repaint();
             }
         });
-        search.add(go);
-        return search;
+        searchAndGo.add(go);
+        return searchAndGo;
     }
 
     // EFFECTS: searches the array and adds corresponding pet animal to pet panel
