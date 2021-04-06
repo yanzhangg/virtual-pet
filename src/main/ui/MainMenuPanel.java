@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.JOptionPane;
 
+// Represents a main menu panel class
 public class MainMenuPanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 1000;
@@ -30,6 +31,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/petlist.json";
 
+    // EFFECTS: constructs a main menu panel
     public MainMenuPanel(JFrame mainFrame, PetList petList) {
         this.petList = petList;
         this.animal = animal;
@@ -43,6 +45,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         add(centrePanel(), BorderLayout.CENTER);
     }
 
+    // EFFECTS: creates a welcome panel
     private JPanel welcomePanel() {
         JPanel header = new JPanel();
         header.setPreferredSize(new Dimension(1000, 300));
@@ -61,6 +64,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return header;
     }
 
+    // EFFECTS: creates a centre panel
     private JPanel centrePanel() {
         JPanel centre = new JPanel();
         centre.setPreferredSize(new Dimension(1000, 345));
@@ -75,6 +79,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return centre;
     }
 
+    // EFFECTS: creates a footer panel
     private JPanel footerPanel() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setPreferredSize(new Dimension(1000, 55));
@@ -93,6 +98,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return footer;
     }
 
+    // EFFECTS: creates a create pet button
     private JButton createPetButton() {
         JButton createPet = new JButton("Create a new pet");
         createPet.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -107,6 +113,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return createPet;
     }
 
+    // EFFECTS: creates a view pet button
     private JButton viewPetsButton() {
         JButton viewPets = new JButton("View all pets");
         viewPets.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -121,6 +128,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return viewPets;
     }
 
+    // EFFECTS: creates a load pets button
     private JButton loadPetsButton() {
         JButton loadPets = new JButton("Load pets");
         loadPets.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -139,6 +147,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return loadPets;
     }
 
+    // EFFECTS: creates a save game button
     private JButton saveGameButton() {
         JButton saveGame = new JButton("Save game");
         saveGame.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -158,6 +167,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         return saveGame;
     }
 
+    // EFFECTS: creates a pop up that confirms quit
     private void confirmQuit() {
         int response = JOptionPane.showConfirmDialog(
                 null, "Would you like to save game?", "Save Game", JOptionPane.YES_NO_OPTION);
@@ -176,6 +186,7 @@ public class MainMenuPanel extends JPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: plays a sound clip
     public void playSound(String soundName) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());

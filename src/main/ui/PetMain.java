@@ -1,14 +1,11 @@
 package ui;
 
 import model.PetList;
-import model.PetAnimal;
-import model.Dog;
-import model.Cat;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
 
+// Represents the main
 public class PetMain extends JFrame {
 
     public static final int WIDTH = 1000;
@@ -20,8 +17,8 @@ public class PetMain extends JFrame {
     private ViewPetListPanel viewPets;
     private PetMain mainFrame;
 
-    // constructs main window
-    // effects: sets up window in which Pet Zoo app will appear
+    // Constructs the main window frame
+    // EFFECTS: sets up window in which Pet Zoo app will appear
     public PetMain() {
         super("Pet Zoo");
 
@@ -37,7 +34,7 @@ public class PetMain extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         new PetMain();
     }
 }

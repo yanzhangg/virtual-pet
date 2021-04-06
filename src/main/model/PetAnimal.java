@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.Timer;
-
 // Represents a pet animal having a name, and a happiness, fullness, and energy level
 public abstract class PetAnimal implements Writable {
     protected String name; // the name of the pet
@@ -88,12 +86,3 @@ public abstract class PetAnimal implements Writable {
     }
 
 }
-    // MODIFIES: this
-    // EFFECTS: decrease levels as time passes
-    // to do next phase
-//    public void passTime() {
-//        fullness--;
-//        happiness--;
-//        energy--;
-//    }
-

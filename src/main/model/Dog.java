@@ -19,6 +19,7 @@ public class Dog extends PetAnimal {
 
     // MODIFIES: this
     // EFFECTS: feed dog action
+    @Override
     public void feed() {
         if (getFullnessLevel() <= 96) {
             this.fullness = this.fullness + 4;

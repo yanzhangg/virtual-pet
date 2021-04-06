@@ -3,56 +3,42 @@
         {
             "happiness": 100,
             "fullness": 100,
-            "name": "test",
+            "name": "sabrina",
             "type": "dog",
             "energy": 100
         },
         {
             "happiness": 100,
             "fullness": 100,
-            "name": "loo",
-            "type": "dog",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "s",
-            "type": "cat",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "ss",
-            "type": "cat",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "we",
-            "type": "dog",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "dsf",
-            "type": "dog",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 90,
             "name": "richard",
-            "type": "dog",
-            "energy": 90
+            "type": "cat",
+            "energy": 100
         },
         {
             "happiness": 100,
             "fullness": 100,
-            "name": "ann",
+            "name": "amy",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 99,
+            "name": "jay",
+            "type": "cat",
+            "energy": 98
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "bryan",
+            "type": "dog",
+            "energy": 100
+        },
+        {
+            "happiness": 100,
+            "fullness": 100,
+            "name": "yan",
             "type": "cat",
             "energy": 100
         }

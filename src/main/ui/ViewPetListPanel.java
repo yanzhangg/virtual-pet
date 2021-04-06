@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// Represents a view pet list panel class
 public class ViewPetListPanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 1000;
@@ -23,6 +24,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
     private PetAnimal animal;
     private JPanel petsPanel;
 
+    // Constructs a view pet list panel
     public ViewPetListPanel(JFrame mainFrame, PetList petList, PetAnimal animal) {
         this.petList = petList;
         this.mainFrame = mainFrame;
@@ -35,6 +37,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         System.out.println(petList.viewPetList());
     }
 
+    // EFFECTS: creates a header panel
     private JPanel headerPanel() {
         JPanel header = new JPanel();
         header.setPreferredSize(new Dimension(1000, 70));
@@ -46,6 +49,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return header;
     }
 
+    // EFFECTS: creates a centre panel
     private JPanel centrePanel() {
         JPanel centre = new JPanel();
         petsPanel = new JPanel();
@@ -60,12 +64,13 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return centre;
     }
 
+    // EFFECTS: creates a search pets panel
     private JPanel searchPetsPanel() {
         ArrayList<PetAnimal> petSearchList = new ArrayList<>();
         JPanel search = new JPanel();
         search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
         search.setPreferredSize(new Dimension(1000, 60));
-        search.setBorder(BorderFactory.createEmptyBorder(0, 180, 5,  200));
+        search.setBorder(BorderFactory.createEmptyBorder(0, 180, 5, 200));
         search.setBackground(Color.white);
         JLabel searchLabel = new JLabel("Search for a pet:  ");
         searchLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -94,6 +99,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return search;
     }
 
+    // EFFECTS: searches the array and adds corresponding pet animal to pet panel
     private void pets(ArrayList<PetAnimal> petArrayList) {
         for (PetAnimal animal : petArrayList) {
             if (animal.getType().equals("dog")) {
@@ -104,6 +110,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         }
     }
 
+    // EFFECTS: creates a footer panel
     private JPanel footerPanel() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setPreferredSize(new Dimension(1000, 55));
@@ -124,6 +131,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return footer;
     }
 
+    // EFFECTS: creates a cat button
     private JButton cat(PetAnimal animal) {
         BufferedImage cat = null;
         try {
@@ -150,6 +158,7 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         return catButton;
     }
 
+    // EFFECTS: creates a dog button
     private JButton dog(PetAnimal animal) {
         BufferedImage dog = null;
         try {

@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+// Represents a pet game panel class
 public class PetGamePanel extends JPanel {
 
     public static final int WIDTH = 1000;
@@ -21,6 +22,7 @@ public class PetGamePanel extends JPanel {
     private PetList petList;
     private PetAnimal animal;
 
+    // EFFECTS: Constructs the pet game panel
     public PetGamePanel(JFrame mainFrame, PetList petList, PetAnimal animal) {
         this.mainFrame = mainFrame;
         this.petList = petList;
@@ -33,6 +35,7 @@ public class PetGamePanel extends JPanel {
         add(centrePanel(), BorderLayout.CENTER);
     }
 
+    // EFFECTS: creates a header panel
     private JPanel headerPanel() {
         JPanel header = new JPanel();
         header.setPreferredSize(new Dimension(1000, 70));
@@ -45,6 +48,7 @@ public class PetGamePanel extends JPanel {
         return header;
     }
 
+    // EFFECTS: creates a pet stats panel
     private JPanel petStatsPanel(PetAnimal animal) {
         JPanel stats = new JPanel();
         stats.setPreferredSize(new Dimension(200, 575));
@@ -52,21 +56,22 @@ public class PetGamePanel extends JPanel {
         stats.setBorder(BorderFactory.createEmptyBorder(60, 20, 40, 0));
         stats.setBackground(Color.white);
         JLabel statsLabel = new JLabel(animal.getName() + "'s status:");
-        statsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+        statsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         stats.add(statsLabel);
         JLabel fullnessLabel = new JLabel("Fullness: " + animal.getFullnessLevel());
-        fullnessLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        fullnessLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
         stats.add(fullnessLabel);
         JLabel happinessLabel = new JLabel("Happiness: " + animal.getHappinessLevel());
-        happinessLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        happinessLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
         stats.add(happinessLabel);
         JLabel energyLabel = new JLabel("Energy: " + animal.getEnergyLevel());
-        energyLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        energyLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
         stats.add(energyLabel);
         add(stats);
         return stats;
     }
 
+    // EFFECTS: creates a centre panel
     private JPanel centrePanel() {
         JPanel centre = new JPanel();
         centre.setBackground(Color.white);
@@ -77,7 +82,7 @@ public class PetGamePanel extends JPanel {
         return centre;
     }
 
-
+    // EFFECTS: creates a pet actions panel
     private JPanel petActionsPanel(PetAnimal animal) {
         JPanel actions = new JPanel();
         actions.setLayout(new GridLayout(1, 0));
@@ -97,6 +102,7 @@ public class PetGamePanel extends JPanel {
         return actions;
     }
 
+    // EFFECTS: creates the main game panel where the pet lives
     private JPanel gamePanel(PetAnimal animal) {
         JPanel game = new JPanel();
         game.setPreferredSize(new Dimension(800, 500));
@@ -111,6 +117,7 @@ public class PetGamePanel extends JPanel {
         return game;
     }
 
+    // EFFECTS: creates a footer panel
     private JPanel footerPanel() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setPreferredSize(new Dimension(1000, 55));
@@ -133,6 +140,7 @@ public class PetGamePanel extends JPanel {
         return footer;
     }
 
+    // EFFECTS: creates a feed button
     private JButton feedAction(PetAnimal animal) {
         JButton feed = new JButton("Feed");
         feed.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
@@ -147,6 +155,7 @@ public class PetGamePanel extends JPanel {
         return feed;
     }
 
+    // EFFECTS: creates a pet button
     private JButton petAction(PetAnimal animal) {
         JButton pet = new JButton("Pet");
         pet.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
@@ -161,6 +170,7 @@ public class PetGamePanel extends JPanel {
         return pet;
     }
 
+    // EFFECTS: creates a play button
     private JButton playAction(PetAnimal animal) {
         JButton play = new JButton("Play");
         play.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
@@ -175,6 +185,7 @@ public class PetGamePanel extends JPanel {
         return play;
     }
 
+    // EFFECTS: creates a dog character label
     private JLabel dogCharacter(PetAnimal animal) {
         BufferedImage dog = null;
         try {
@@ -187,6 +198,7 @@ public class PetGamePanel extends JPanel {
         return dogLabel;
     }
 
+    // EFFECTS: creates a cat character label
     private JLabel catCharacter(PetAnimal animal) {
         BufferedImage cat = null;
         try {

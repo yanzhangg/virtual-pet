@@ -24,3 +24,9 @@ create and take care of their own virtual pet.
 - As a user, when I select the quit option from the application menu, I want to be reminded to save my pets to file or 
   have the option to not do so
 - As a user, when I start the application, I want to be given the option to load my pets from file
+
+## Phase 4: Task 2
+
+I have chosen to implement a type hierarchy for task 2. The PetAnimal class is an abstract class that are extended by 
+the Dog and Cat subclasses. feed(), play(), and sleep() are abstract functions that are implemented in the subclasses 
+according to the type of animal. 

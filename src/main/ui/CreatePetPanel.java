@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// Represents a create pet panel class
 public class CreatePetPanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 1000;
@@ -25,9 +26,10 @@ public class CreatePetPanel extends JPanel implements ActionListener {
     private PetList petList;
     private String selectedPetType;
 
+    // EFFECTS: constructs a create pet panel
     public CreatePetPanel(JFrame mainFrame, PetList petList) {
         this.petList = petList;
-        this.animal = animal;
+//        this.animal = animal;
         this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));
@@ -36,6 +38,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         add(centrePanel(), BorderLayout.CENTER);
     }
 
+    // EFFECTS: creates a header panel
     private JPanel headerPanel() {
         JPanel header = new JPanel();
         header.setPreferredSize(new Dimension(1000, 70));
@@ -48,6 +51,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return header;
     }
 
+    // EFFECTS: creates a centre panel
     private JPanel centrePanel() {
         JPanel centre = new JPanel();
         centre.setBackground(Color.white);
@@ -61,6 +65,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return centre;
     }
 
+    // EFFECTS: creates a choose pet label onto a panel
     private JPanel choosePetPanel() {
         JPanel choosePet = new JPanel();
         choosePet.setLayout(new BoxLayout(choosePet, BoxLayout.X_AXIS));
@@ -74,6 +79,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return choosePet;
     }
 
+    // EFFECTS: creates a dog and cat image onto a panel
     private JPanel petImagePanel() {
         JPanel petImage = new JPanel();
         petImage.setLayout(new BoxLayout(petImage, BoxLayout.X_AXIS));
@@ -98,6 +104,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return petImage;
     }
 
+    // EFFECTS: creates a dog and cat radio button onto a panel
     private JPanel buttonsPanel() {
         JPanel radioButton = new JPanel();
         radioButton.setBackground(Color.white);
@@ -121,6 +128,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return radioButton;
     }
 
+    // EFFECTS: creates a name pet label onto a panel
     private JPanel namePetPanel() {
         JPanel namePet = new JPanel();
         namePet.setLayout(new BoxLayout(namePet, BoxLayout.X_AXIS));
@@ -134,6 +142,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return namePet;
     }
 
+    // EFFECTS: creates a text box for naming a pet onto a panel
     private JPanel typePetPanel() {
         JPanel name = new JPanel();
         name.setLayout(new BoxLayout(name, BoxLayout.Y_AXIS));
@@ -146,6 +155,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return name;
     }
 
+    // EFFECTS: creates a footer panel
     private JPanel footerPanel() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setPreferredSize(new Dimension(1000, 55));
@@ -157,6 +167,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return footer;
     }
 
+    // EFFECTS: creates an action listener for dog radio button
     private ActionListener dogActionListener(JRadioButton dogButton) {
         dogButton.addActionListener(new ActionListener() {
             @Override
@@ -167,6 +178,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return null;
     }
 
+    // EFFECTS: creates an action listener for cat radio button
     private ActionListener catActionListener(JRadioButton catButton) {
         catButton.addActionListener(new ActionListener() {
             @Override
@@ -177,6 +189,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return null;
     }
 
+    // EFFECTS: creates a submit button
     private JButton submitButton() {
         JButton submit = new JButton("Create pet!");
         submit.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -199,6 +212,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
         return submit;
     }
 
+    // EFFECTS: creates a back button
     private JButton backButton() {
         JButton back = new JButton("Back");
         back.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
