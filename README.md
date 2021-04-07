@@ -38,15 +38,15 @@ my classes. Each panel is responsible for a certain part of the GUI, however the
 My next steps for refactoring would include:
 - Refactor out duplicate code for pet actions, such as dog and cat
   - Currently, in my PetApp class, there are separate methods for dog and cat actions, such as dogFeed and catFeed. I would like to
-    create one method that would deal with feeding for different types of animals
+    create one method that would deal with feeding for different types of animals.
 - Add a navigator class that refactors duplicate code for navigating between pages
-  - Currently, the task of switching between panels are dealt with in the actionListeners, but there the code is 
-    relatively the same (revalidate() and removeAll()), so this could be refactored out and instead have a navigator tool class
+  - Currently, the task of switching between panels are dealt with in the actionListeners, but the code is 
+    relatively the same (eg. revalidate() and removeAll()), so this could be refactored out and instead I can create a Navigator Tool class
     that allows me to switch between panels.
 - Single point of control
-  - I would need to change my code so that it reflects the principle of single point of control and take in the declared field 
-    instead of the actual value, in case I would like to change constants in the future, such as font type and font size.
+  - I would need to change my code so that it reflects the principle of single point of control and take in the declared constants
+    instead of the actual value, in case I would like to change them in the future, such as font type and font size.
 - Create a method or class that deals with importing my dog and cat images and turning them into icons or labels
   - I noticed that I have written the same code multiple times for creating cat and dog images, so I would make an Image to Label class 
-    or method, that allows me to pass in an image and size and turn that image into a label of the specified size
+    or method, that allows me to pass in an image and size and turn that image into a label of the specified size.
 
