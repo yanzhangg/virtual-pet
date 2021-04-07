@@ -12,9 +12,6 @@ public class PetMain extends JFrame {
     public static final int HEIGHT = 700;
     private PetList petList;
     private MainMenuPanel mainMenu;
-    private CreatePetPanel create;
-    private PetGamePanel petGame;
-    private ViewPetListPanel viewPets;
     private PetMain mainFrame;
 
     // Constructs the main window frame

@@ -1,7 +1,5 @@
 package model;
 
-import org.json.JSONObject;
-
 // Represents a pet dog
 public class Dog extends PetAnimal {
 

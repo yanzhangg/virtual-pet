@@ -2,8 +2,6 @@ package persistence;
 
 import model.PetList;
 import model.PetAnimal;
-import model.Dog;
-import model.Cat;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

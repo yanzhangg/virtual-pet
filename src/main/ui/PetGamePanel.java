@@ -1,6 +1,5 @@
 package ui;
 
-import model.Dog;
 import model.PetAnimal;
 import model.PetList;
 

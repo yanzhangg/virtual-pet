@@ -5,7 +5,6 @@ import model.PetList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.ws.Action;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +33,6 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
         add(headerPanel(), BorderLayout.NORTH);
         add(footerPanel(), BorderLayout.SOUTH);
         add(centrePanel(), BorderLayout.CENTER);
-        System.out.println(petList.viewPetList());
     }
 
     // EFFECTS: creates a header panel

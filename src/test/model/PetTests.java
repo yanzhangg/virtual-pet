@@ -191,10 +191,10 @@ class PetTests {
         assertEquals("", petList.viewPetList());
 
         petList.addPetToList(dog);
-        assertEquals("Billy\n", petList.viewPetList());
+        assertEquals("Billy the dog\n", petList.viewPetList());
 
         petList.addPetToList(cat);
-        assertEquals("Billy\nLarry\n", petList.viewPetList());
+        assertEquals("Billy the dog\nLarry the cat\n", petList.viewPetList());
     }
 
     @Test

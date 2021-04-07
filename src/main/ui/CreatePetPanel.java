@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 // Represents a create pet panel class
 public class CreatePetPanel extends JPanel implements ActionListener {
@@ -21,7 +20,7 @@ public class CreatePetPanel extends JPanel implements ActionListener {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 700;
     private JFrame mainFrame;
-    JTextField namePet;
+    private JTextField namePet;
     private PetAnimal animal;
     private PetList petList;
     private String selectedPetType;
@@ -29,7 +28,6 @@ public class CreatePetPanel extends JPanel implements ActionListener {
     // EFFECTS: constructs a create pet panel
     public CreatePetPanel(JFrame mainFrame, PetList petList) {
         this.petList = petList;
-//        this.animal = animal;
         this.mainFrame = mainFrame;
         setLayout(new BorderLayout());
         setSize(new Dimension(WIDTH, HEIGHT));

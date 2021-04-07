@@ -7,7 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 
 // Represents a list of pets
-public class PetList extends ArrayList<PetAnimal> implements Writable {
+public class PetList implements Writable {
     private String name; // the name of pet list
     private ArrayList<PetAnimal> petList; // list of pets
 
