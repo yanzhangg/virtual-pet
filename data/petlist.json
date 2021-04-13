@@ -2,45 +2,17 @@
     "petList": [
         {
             "happiness": 100,
-            "fullness": 100,
+            "fullness": 50,
             "name": "sabrina",
             "type": "dog",
-            "energy": 100
+            "energy": 80
         },
         {
             "happiness": 100,
-            "fullness": 100,
+            "fullness": 90,
             "name": "richard",
             "type": "cat",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "amy",
-            "type": "dog",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 99,
-            "name": "jay",
-            "type": "cat",
-            "energy": 98
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "bryan",
-            "type": "dog",
-            "energy": 100
-        },
-        {
-            "happiness": 100,
-            "fullness": 100,
-            "name": "yan",
-            "type": "cat",
-            "energy": 100
+            "energy": 80
         }
     ],
     "name": "My Pet List"

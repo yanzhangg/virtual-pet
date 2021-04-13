@@ -91,12 +91,10 @@ public class PetGamePanel extends JPanel {
         JLabel actionsLabel = new JLabel("Actions:");
         actionsLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
         actions.add(actionsLabel);
-        JButton sleep = new JButton("Sleep");
-        sleep.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
         actions.add(feedAction(animal));
         actions.add(petAction(animal));
         actions.add(playAction(animal));
-        actions.add(sleep);
+        actions.add(sleepAction(animal));
         add(actions);
         return actions;
     }
@@ -106,7 +104,7 @@ public class PetGamePanel extends JPanel {
         JPanel game = new JPanel();
         game.setPreferredSize(new Dimension(800, 500));
         game.setLayout(new BorderLayout());
-        game.setBackground(Color.lightGray);
+        game.setBackground(Color.decode("#e8f8ff"));
         if (animal.getType().equals("dog")) {
             game.add(dogCharacter(animal), BorderLayout.SOUTH);
         } else if (animal.getType().equals("cat")) {
@@ -147,8 +145,9 @@ public class PetGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 animal.feed();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
                 mainFrame.revalidate();
-                mainFrame.repaint();
             }
         });
         return feed;
@@ -162,8 +161,9 @@ public class PetGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 animal.pet();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
                 mainFrame.revalidate();
-                mainFrame.repaint();
             }
         });
         return pet;
@@ -177,11 +177,27 @@ public class PetGamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 animal.play();
-                mainFrame.getContentPane().revalidate();
-                mainFrame.getContentPane().repaint();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
+                mainFrame.revalidate();
             }
         });
         return play;
+    }
+
+    private JButton sleepAction(PetAnimal animal) {
+        JButton sleep = new JButton("Sleep");
+        sleep.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
+        sleep.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                animal.sleep();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.add(new PetGamePanel(mainFrame, petList, animal));
+                mainFrame.revalidate();
+            }
+        });
+        return sleep;
     }
 
     // EFFECTS: creates a dog character label
@@ -207,7 +223,6 @@ public class PetGamePanel extends JPanel {
         }
         Image catResized = cat.getScaledInstance(400, 400, cat.SCALE_SMOOTH);
         JLabel catLabel = new JLabel(new ImageIcon(catResized));
-
         return catLabel;
     }
 
