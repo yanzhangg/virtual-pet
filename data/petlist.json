@@ -2,16 +2,23 @@
     "petList": [
         {
             "happiness": 100,
-            "fullness": 50,
+            "fullness": 66,
             "name": "sabrina",
             "type": "dog",
             "energy": 80
         },
         {
             "happiness": 100,
-            "fullness": 90,
+            "fullness": 95,
             "name": "richard",
             "type": "cat",
+            "energy": 85
+        },
+        {
+            "happiness": 100,
+            "fullness": 78,
+            "name": "felix",
+            "type": "dog",
             "energy": 80
         }
     ],

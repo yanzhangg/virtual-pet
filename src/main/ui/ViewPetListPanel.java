@@ -79,6 +79,8 @@ public class ViewPetListPanel extends JPanel implements ActionListener {
     // EFFECTS: creates a search pet text box and go button panel
     private JPanel goButton() {
         JPanel searchAndGo = new JPanel();
+        searchAndGo.setBackground(Color.white);
+        searchAndGo.setLayout(new BoxLayout(searchAndGo, BoxLayout.X_AXIS));
         ArrayList<PetAnimal> petSearchList = new ArrayList<>();
         JTextField searchPet = new JTextField(5);
         searchPet.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
