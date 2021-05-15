@@ -1,6 +1,6 @@
 # Project Proposal: Virtual Pet
 
-My CPSC 210 personal project idea is to create a virtual pet. This idea was born out of the memories of the 
+My project idea is to create a virtual pet. This idea was born out of the memories of the 
 Tamagotchi digital pets back in the 1990s and early 2000s, so my project is a take on the digital pet character. 
 This project will allow users to choose a pet (either a cat or dog), and take care of the pet through feeding and playing 
 with their pet. In the future, if possible, I also want to have features where I can move the pet and be able to dress 
